@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" fill="none">
+  <!-- Decorative leaf/petal motif -->
+  <g transform="translate(20, 10)">
+    <!-- Left petal -->
+    <path d="M30 95 C30 95, 15 60, 30 30 C35 20, 45 20, 50 30 C65 60, 50 95, 50 95 C45 102, 35 102, 30 95Z" fill="#8CC5A2" opacity="0.7"/>
+    <!-- Right petal -->
+    <path d="M45 90 C45 90, 35 58, 50 32 C54 24, 62 24, 66 32 C80 58, 70 90, 70 90 C66 96, 49 96, 45 90Z" fill="#A7D1E4" opacity="0.6"/>
+    <!-- Center accent -->
+    <ellipse cx="50" cy="55" rx="4" ry="12" fill="#5EA87A" opacity="0.5" transform="rotate(-5 50 55)"/>
+  </g>
+  <!-- Brand name -->
+  <text x="105" y="52" font-family="'Jost', 'Futura', 'Century Gothic', sans-serif" font-size="30" font-weight="600" fill="#3A3D3E" letter-spacing="0.5">Beauty Beratung</text>
+  <!-- Subline -->
+  <text x="105" y="78" font-family="'Inter', 'Helvetica Neue', sans-serif" font-size="13" font-weight="400" fill="#8A8A82" letter-spacing="3">BY EVELYN JUNGHARDT</text>
+  <!-- Thin accent line -->
+  <line x1="105" y1="88" x2="320" y2="88" stroke="#8CC5A2" stroke-width="1" opacity="0.4"/>
+</svg>

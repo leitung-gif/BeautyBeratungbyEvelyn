@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /brand/
+
+Sitemap: https://www.beauty-consulting-junghardt.ch/sitemap.xml
