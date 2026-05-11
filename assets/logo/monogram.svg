@@ -1,8 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="14" fill="#EEF7F1"/>
-  <!-- Decorative petal accent -->
-  <path d="M18 48 C18 48, 12 32, 22 18 C25 13, 30 13, 33 18 C43 32, 37 48, 37 48 C34 52, 21 52, 18 48Z" fill="#8CC5A2" opacity="0.25"/>
+  <rect width="64" height="64" rx="14" fill="#F5E8EC"/>
+  <path d="M18 48 C18 48, 12 32, 22 18 C25 13, 30 13, 33 18 C43 32, 37 48, 37 48 C34 52, 21 52, 18 48Z" fill="#C9A0A0" opacity="0.25"/>
   <path d="M28 46 C28 46, 24 33, 32 21 C34 17, 38 17, 40 21 C48 33, 44 46, 44 46 C42 49, 30 49, 28 46Z" fill="#A7D1E4" opacity="0.2"/>
-  <!-- Monogram -->
   <text x="32" y="44" text-anchor="middle" font-family="'Jost', 'Futura', sans-serif" font-size="26" font-weight="600" fill="#3A3D3E">BB</text>
 </svg>

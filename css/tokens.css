@@ -2,25 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --champagne: #8CC5A2;
-  --champagne-light: #B5DCCA;
-  --champagne-dark: #5EA87A;
+  --champagne: #C9A0A0;
+  --champagne-light: #DFC4C4;
+  --champagne-dark: #A67B7B;
   --charcoal: #2A2D2E;
   --charcoal-soft: #3A3D3E;
   --ivory: #FAFAF8;
-  --cream: #F3F3F0;
+  --cream: #F3F1F0;
   --stone: #8A8A82;
   --rose-mist: #A7D1E4;
-  --sage: #8CC5A2;
+  --sage: #C9A0A0;
   --white: #FFFFFF;
   --pastel-blue: #A7D1E4;
   --pastel-blue-light: #C8E3EF;
-  --pastel-green: #8CC5A2;
-  --pastel-green-light: #B5DCCA;
+  --pastel-green: #C9A0A0;
+  --pastel-green-light: #DFC4C4;
 
   --surface-primary: var(--ivory);
   --surface-secondary: var(--cream);
-  --surface-dark: #E8F5EC;
+  --surface-dark: #F5E8EC;
   --surface-card: var(--white);
   --text-primary: #3A3D3E;
   --text-secondary: var(--stone);
