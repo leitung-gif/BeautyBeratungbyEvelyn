@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="UTF-8">
+<title>Rechnung / Offerte — Beauty Beratung by Evelyn Junghardt</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #e8e8e8; display: flex; flex-direction: column; align-items: center; padding: 2rem; }
+  .page-label { font-family: 'Jost', sans-serif; font-weight: 500; font-size: 1.2rem; color: #3A3D3E; margin-bottom: 0.25rem; }
+  .sub-label { font-size: 0.7rem; color: #8A8A82; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1rem; }
+
+  .invoice {
+    width: 210mm;
+    min-height: 297mm;
+    background: #FAFAF8;
+    border-radius: 2mm;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Top accent bar */
+  .invoice::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2mm;
+    background: linear-gradient(90deg, #C9A0A0, #A7D1E4, #C9A0A0);
+  }
+
+  /* Header */
+  .inv-header {
+    padding: 15mm 15mm 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .inv-brand {
+    display: flex;
+    flex-direction: column;
+  }
+  .inv-brand-name {
+    font-family: 'Jost', sans-serif;
+    font-size: 18pt;
+    font-weight: 600;
+    color: #3A3D3E;
+  }
+  .inv-brand-sub {
+    font-size: 6pt;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #A67B7B;
+    margin-top: 1mm;
+  }
+  .inv-brand-contact {
+    margin-top: 4mm;
+    font-size: 7pt;
+    color: #8A8A82;
+    line-height: 1.8;
+  }
+
+  .inv-meta {
+    text-align: right;
+  }
+  .inv-type {
+    font-family: 'Jost', sans-serif;
+    font-size: 24pt;
+    font-weight: 600;
+    color: #C9A0A0;
+    margin-bottom: 3mm;
+  }
+  .inv-meta-table {
+    font-size: 7.5pt;
+    color: #8A8A82;
+    line-height: 1.8;
+  }
+  .inv-meta-table strong {
+    color: #3A3D3E;
+    font-weight: 600;
+  }
+
+  /* Divider */
+  .inv-divider {
+    margin: 8mm 15mm;
+    height: 0.3pt;
+    background: linear-gradient(90deg, #C9A0A0 0%, rgba(201,160,160,0.1) 100%);
+  }
+
+  /* Client info */
+  .inv-addresses {
+    padding: 0 15mm;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10mm;
+  }
+  .inv-address-block label {
+    display: block;
+    font-size: 5.5pt;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #A67B7B;
+    margin-bottom: 2mm;
+  }
+  .inv-address-block p {
+    font-size: 8pt;
+    color: #3A3D3E;
+    line-height: 1.7;
+  }
+  .inv-address-block .placeholder {
+    color: #C9A0A0;
+    font-style: italic;
+  }
+
+  /* Subject line */
+  .inv-subject {
+    padding: 0 15mm;
+    margin-bottom: 6mm;
+  }
+  .inv-subject h2 {
+    font-family: 'Jost', sans-serif;
+    font-size: 11pt;
+    font-weight: 600;
+    color: #3A3D3E;
+    margin-bottom: 2mm;
+  }
+  .inv-subject p {
+    font-size: 7.5pt;
+    color: #8A8A82;
+    line-height: 1.6;
+  }
+
+  /* Table */
+  .inv-table-wrap {
+    padding: 0 15mm;
+    margin-bottom: 8mm;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  thead th {
+    font-size: 5.5pt;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #A67B7B;
+    padding: 3mm 2mm;
+    border-bottom: 0.5pt solid #C9A0A0;
+    text-align: left;
+  }
+  thead th:nth-child(3),
+  thead th:nth-child(4),
+  thead th:nth-child(5) {
+    text-align: right;
+  }
+  tbody td {
+    font-size: 7.5pt;
+    color: #3A3D3E;
+    padding: 3mm 2mm;
+    border-bottom: 0.3pt solid rgba(201,160,160,0.15);
+    vertical-align: top;
+  }
+  tbody td:nth-child(3),
+  tbody td:nth-child(4),
+  tbody td:nth-child(5) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  tbody td .desc {
+    font-size: 6.5pt;
+    color: #8A8A82;
+    margin-top: 1mm;
+  }
+  .placeholder-row td {
+    color: #C9A0A0;
+    font-style: italic;
+  }
+
+  /* Totals */
+  .inv-totals {
+    padding: 0 15mm;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10mm;
+  }
+  .totals-box {
+    width: 65mm;
+  }
+  .totals-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 2mm 0;
+    font-size: 7.5pt;
+    color: #8A8A82;
+    border-bottom: 0.3pt solid rgba(201,160,160,0.1);
+  }
+  .totals-row.total {
+    font-size: 10pt;
+    font-weight: 600;
+    color: #3A3D3E;
+    border-bottom: none;
+    border-top: 1pt solid #C9A0A0;
+    padding-top: 3mm;
+    margin-top: 1mm;
+  }
+  .totals-row span:last-child {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Payment info */
+  .inv-payment {
+    padding: 0 15mm;
+    margin-bottom: 8mm;
+  }
+  .inv-payment h3 {
+    font-size: 5.5pt;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #A67B7B;
+    margin-bottom: 3mm;
+  }
+  .payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+  }
+  .payment-item label {
+    display: block;
+    font-size: 6pt;
+    color: #8A8A82;
+    margin-bottom: 1mm;
+  }
+  .payment-item span {
+    font-size: 7.5pt;
+    color: #3A3D3E;
+    font-weight: 500;
+  }
+
+  /* Footer */
+  .inv-footer {
+    margin-top: auto;
+    background: #3A3D3E;
+    padding: 5mm 15mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .inv-footer span {
+    font-size: 6pt;
+    color: rgba(250,250,248,0.5);
+  }
+  .inv-footer .brand-foot {
+    color: #C9A0A0;
+    font-weight: 500;
+  }
+
+  /* Notes */
+  .inv-notes {
+    padding: 0 15mm;
+    margin-bottom: 8mm;
+  }
+  .inv-notes p {
+    font-size: 6.5pt;
+    color: #8A8A82;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .invoice { box-shadow: none; border-radius: 0; }
+    .page-label, .sub-label { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div>
+  <h1 class="page-label">Rechnung / Offerte — Design-Vorlage</h1>
+  <p class="sub-label">A4 · 210 × 297 mm · Druckfertig</p>
+
+  <div class="invoice">
+    <!-- Header -->
+    <div class="inv-header">
+      <div class="inv-brand">
+        <div class="inv-brand-name">Beauty Beratung</div>
+        <div class="inv-brand-sub">by Evelyn Junghardt</div>
+        <div class="inv-brand-contact">
+          Evelyn Junghardt<br>
+          Flurweg 1, 5430 Wettingen<br>
+          +41 76 389 36 16<br>
+          evelynbeautyconsulting@gmail.com
+        </div>
+      </div>
+      <div class="inv-meta">
+        <div class="inv-type">RECHNUNG</div>
+        <div class="inv-meta-table">
+          <strong>Nr.</strong> BB-2026-001<br>
+          <strong>Datum</strong> 11. Mai 2026<br>
+          <strong>Fällig</strong> 10. Juni 2026
+        </div>
+      </div>
+    </div>
+
+    <div class="inv-divider"></div>
+
+    <!-- Addresses -->
+    <div class="inv-addresses">
+      <div class="inv-address-block">
+        <label>Rechnungsempfänger</label>
+        <p class="placeholder">
+          Firma / Name<br>
+          Strasse Nr.<br>
+          PLZ Ort<br>
+          Schweiz
+        </p>
+      </div>
+      <div class="inv-address-block">
+        <label>Projektreferenz</label>
+        <p class="placeholder">
+          Projektname<br>
+          Beratungszeitraum
+        </p>
+      </div>
+    </div>
+
+    <!-- Subject -->
+    <div class="inv-subject">
+      <h2>Beratungsleistungen Mai 2026</h2>
+      <p>Vielen Dank für die angenehme Zusammenarbeit. Nachfolgend erlaube ich mir, Ihnen folgende Leistungen in Rechnung zu stellen:</p>
+    </div>
+
+    <!-- Table -->
+    <div class="inv-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:8mm">Pos.</th>
+            <th>Beschreibung</th>
+            <th style="width:18mm">Menge</th>
+            <th style="width:22mm">Einheit</th>
+            <th style="width:25mm">Betrag CHF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              Strategische Unternehmensberatung
+              <div class="desc">Analyse, Konzeptentwicklung und Handlungsempfehlungen</div>
+            </td>
+            <td>8</td>
+            <td>Stunden</td>
+            <td>1'600.00</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              Sortiments- & Markenberatung
+              <div class="desc">Produktportfolio-Optimierung und Markenpartner-Evaluation</div>
+            </td>
+            <td>4</td>
+            <td>Stunden</td>
+            <td>800.00</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>
+              Mitarbeiter-Coaching
+              <div class="desc">Verkaufstraining und Kundenansprache, In-House</div>
+            </td>
+            <td>1</td>
+            <td>Halbtag</td>
+            <td>950.00</td>
+          </tr>
+          <tr class="placeholder-row">
+            <td>4</td>
+            <td>Weitere Position nach Bedarf</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Totals -->
+    <div class="inv-totals">
+      <div class="totals-box">
+        <div class="totals-row">
+          <span>Zwischensumme</span>
+          <span>CHF 3'350.00</span>
+        </div>
+        <div class="totals-row">
+          <span>MwSt. (8.1%)</span>
+          <span>CHF 271.35</span>
+        </div>
+        <div class="totals-row total">
+          <span>Total</span>
+          <span>CHF 3'621.35</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment -->
+    <div class="inv-payment">
+      <h3>Zahlungsinformationen</h3>
+      <div class="payment-grid">
+        <div class="payment-item">
+          <label>Konto</label>
+          <span>IBAN CH00 0000 0000 0000 0000 0</span>
+        </div>
+        <div class="payment-item">
+          <label>Zahlungsfrist</label>
+          <span>30 Tage netto</span>
+        </div>
+        <div class="payment-item">
+          <label>Bank</label>
+          <span>Bankname, Ort</span>
+        </div>
+        <div class="payment-item">
+          <label>Referenz</label>
+          <span>BB-2026-001</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="inv-notes">
+      <p>Bitte überweisen Sie den Betrag innert 30 Tagen. Bei Fragen stehe ich Ihnen jederzeit gerne zur Verfügung. Herzlichen Dank für Ihr Vertrauen.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="inv-footer">
+      <span class="brand-foot">Beauty Beratung by Evelyn Junghardt</span>
+      <span>Flurweg 1 · 5430 Wettingen · +41 76 389 36 16</span>
+      <span>Seite 1 von 1</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
